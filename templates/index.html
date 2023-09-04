@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-size: 18px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Course Recommendation System</h1>
+    </header>
+
+    <div class="container" onsubmit = "submitForm(e)"> 
+        <form id="recommendation-form">
+            <label for="interests">Interests:</label>
+            <input type="text" id="interests" name="interests" required><br><br>
+            
+            <label for="mental-health">Mental Health:</label>
+            <input type="text" id="mental-health" name="mental_health" required><br><br>
+            
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <h2>Recommended Courses:</h2>
+        <ul id="recommended-courses"></ul>
+    </div>
+
+    <script>
+        // Your JavaScript code for form submission and course recommendation can go here
+
+        function submitForm(event){
+
+            event.preventDefault() 
+
+            let interests = document.getelementById("interests").value;
+            let mental_health = document.getelementById("mental-health").value;
+
+            fetch("http://localhost:5000",{
+                headers:{"Content-Type":"application/json"},  
+                body:{interests,mental_health},
+                method:"POST"
+            }).then(a => console.log(a)).catch(err => console.log(err));  
+        } 
+    </script>
+</body>
+</html>
